@@ -1,7 +1,7 @@
 <%= form_with(model: picture) do |form| %>
   <% if picture.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
+      <h2><%= pluralize(picture.errors.count, "error") %> 件のエラーがあります</h2>
 
       <ul>
         <% picture.errors.each do |error| %>
@@ -30,3 +30,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= link_to "ブログ一覧画面にもどる", pictures_path %>
