@@ -22,15 +22,16 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
-    if params[:back]
-      render :new
-    else
-      if @picture.save
-        format.html { redirect_to picture_url(@picture), notice: "投稿しました" }
-        format.json { render :show, status: :created, location: @picture }
+      if params[:back]
+        render :new
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        if @picture.save
+          format.html { redirect_to picture_url(@picture), notice: "投稿しました" }
+          format.json { render :show, status: :created, location: @picture }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
