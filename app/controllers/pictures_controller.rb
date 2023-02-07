@@ -22,6 +22,9 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
+    if params[:back]
+      render :new
+    else
       if @picture.save
         format.html { redirect_to picture_url(@picture), notice: "投稿しました" }
         format.json { render :show, status: :created, location: @picture }
