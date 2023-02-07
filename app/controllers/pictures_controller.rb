@@ -19,7 +19,7 @@ class PicturesController < ApplicationController
   end
 
   def create
-    @picture = Picture.new(picture_params)
+    @picture = current_user.pictures.build(picture_params)
 
     respond_to do |format|
       if params[:back]
@@ -46,6 +46,11 @@ class PicturesController < ApplicationController
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def confirm
+    @picture = current_user.pictures.build(blog_params)
+    render :new if @blog.invalid?  
   end
 
   def destroy
