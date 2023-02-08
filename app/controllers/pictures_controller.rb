@@ -49,8 +49,8 @@ class PicturesController < ApplicationController
   end
 
   def confirm
-    @picture = current_user.pictures.build(blog_params)
-    render :new if @blog.invalid?  
+    @picture = current_user.pictures.build(picture_params)
+    render :new if @picture.invalid?  
   end
 
   def destroy
@@ -68,6 +68,6 @@ class PicturesController < ApplicationController
   end
 
   def picture_params
-    params.require(:picture).permit(:title, :content, :image)
+    params.require(:picture).permit(:title, :content, :image, :image_cache)
   end
 end
